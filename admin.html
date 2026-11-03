@@ -1,156 +1,309 @@
+
 <!DOCTYPE html>
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GK LIBRARY Admin Panel</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GK LIBRARY Admin</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f1f5f9;color:#172033}
-header{background:#10243e;color:white;padding:20px}
-header h2{margin:0;color:#f5c451}
-.container{max-width:900px;margin:25px auto;padding:15px}
-.card{background:white;padding:22px;border-radius:14px;margin-bottom:18px;box-shadow:0 3px 12px #0001}
-input,button{width:100%;padding:13px;margin:8px 0;border-radius:8px;font-size:16px}
-input{border:1px solid #cbd5e1}
-button{border:0;background:#10243e;color:white;font-weight:bold;cursor:pointer}
-button:hover{opacity:.9}
+body{margin:0;font-family:Arial;background:#f1f5f9;color:#172033}
+header{background:#10243e;color:white;padding:18px}
+header h2{color:#f5c451;margin:0}
+main{max-width:950px;margin:auto;padding:15px}
+.card{background:white;padding:18px;border-radius:13px;margin:15px 0;box-shadow:0 2px 10px #0001}
+input,select,button{width:100%;padding:12px;margin:6px 0;border:1px solid #cbd5e1;border-radius:8px;font-size:15px}
+button{background:#10243e;color:white;border:0;font-weight:bold}
+button.danger{background:#b42318}
+button.secondary{background:#475569}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.tile{background:#eaf0f8;padding:15px;border-radius:9px;text-align:center}
+.student{border:1px solid #ddd;padding:13px;border-radius:10px;margin:12px 0}
+.student p{margin:6px 0;overflow-wrap:anywhere}
+.actions{display:flex;gap:8px}
+.actions button{flex:1}
 #dashboard{display:none}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
-.tile{background:#eaf0f8;padding:18px;border-radius:10px;text-align:center}
-.tile h3{margin:5px;color:#10243e}
-.small{color:#64748b;font-size:13px}
 #message{white-space:pre-wrap;color:#b42318}
+.small{font-size:13px;color:#64748b}
 </style>
 </head>
 <body>
-
 <header>
 <h2>GK LIBRARY</h2>
 <p>ADMIN CONTROL PANEL</p>
 </header>
 
-<div class="container">
-
-<div class="card" id="login">
+<main>
+<section class="card" id="login">
 <h2>Admin Login</h2>
-<p class="small">केवल अधिकृत Admin ही Login कर सकते हैं।</p>
 <input id="email" type="email" placeholder="Admin Email">
 <input id="password" type="password" placeholder="Password">
 <button onclick="login()">LOGIN</button>
 <p id="message"></p>
-</div>
+</section>
 
-<div id="dashboard">
+<section id="dashboard">
 <div class="card">
 <h2>Welcome, Admin!</h2>
-<p>GK LIBRARY Admin Dashboard</p>
-<button onclick="logout()">LOGOUT</button>
+<button class="secondary" onclick="logout()">LOGOUT</button>
 </div>
 
 <div class="card">
-<h3>Library Overview</h3>
+<h3>Dashboard Overview</h3>
 <div class="grid">
-<div class="tile">
-<h3>50</h3>
-<p>Total Seats</p>
-</div>
-<div class="tile">
-<h3>Students</h3>
-<p>Student Management</p>
-</div>
-<div class="tile">
-<h3>Bookings</h3>
-<p>Booking Management</p>
-</div>
-<div class="tile">
-<h3>Payments</h3>
-<p>Payment Management</p>
-</div>
+<div class="tile"><h2>50</h2>Total Seats</div>
+<div class="tile"><h2 id="totalStudents">0</h2>Admissions</div>
+<div class="tile"><h2 id="activeStudents">0</h2>Active Students</div>
 </div>
 </div>
 
 <div class="card">
-<h3>Student Management</h3>
-<p class="small">अगले चरण में Student Add, Edit और Delete जोड़ा जाएगा।</p>
+<h2 id="formTitle">Add New Student</h2>
+<input id="studentName" placeholder="Student Name">
+<input id="fatherName" placeholder="Father Name">
+<input id="mobile" type="tel" placeholder="Mobile Number">
+<input id="address" placeholder="Full Address">
+<input id="seatIds" placeholder="Seat Numbers (example: 1,2)">
+<input id="monthlyFee" type="number" placeholder="Monthly Fee (₹)">
+<label>Admission Date</label>
+<input id="admissionDate" type="date">
+<label>Admission Status</label>
+<select id="status">
+<option value="active">Active</option>
+<option value="pending">Pending</option>
+<option value="inactive">Inactive</option>
+</select>
+<button onclick="saveStudent()" id="saveButton">ADD STUDENT</button>
+<button class="secondary" onclick="resetForm()">CANCEL / CLEAR</button>
+<p class="small">Seat numbers यहाँ दर्ज करने से वास्तविक seat booking अपने-आप नहीं होती।</p>
+<p id="formMessage"></p>
 </div>
 
 <div class="card">
-<h3>Seat & Booking Management</h3>
-<p class="small">50 Seats और Morning, Afternoon, Evening स्लॉट का प्रबंधन अगले चरण में जोड़ा जाएगा।</p>
+<h2>Student Management</h2>
+<input id="search" placeholder="Search by name or mobile..." oninput="renderStudents()">
+<button class="secondary" onclick="loadStudents()">REFRESH STUDENTS</button>
+<div id="studentList">Loading...</div>
 </div>
-
-<div class="card">
-<h3>Payment & QR / UPI Settings</h3>
-<p class="small">Payment status और अपना QR Code / UPI जोड़ने की सुविधा अगले चरण में जोड़ी जाएगी।</p>
-</div>
-
-<div class="card">
-<h3>Library Settings</h3>
-<p class="small">Fees, timings और contact details का प्रबंधन अगले चरण में जोड़ा जाएगा।</p>
-</div>
-</div>
-</div>
+</section>
+</main>
 
 <script>
-const SUPABASE_URL = "https://eszyrevduobnpjfcknmr.supabase.co";
-const SUPABASE_KEY = "sb_publishable_agE4Zq90RzufPjgKbUrX0w_XgBVYRAN";
+const SUPABASE_URL="https://eszyrevduobnpjfcknmr.supabase.co";
+const SUPABASE_KEY="sb_publishable_agE4Zq90RzufPjgKbUrX0w_XgBVYRAN";
+const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 
-const db = window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+let students=[];
+let editingId=null;
 
-async function showDashboard(user){
- const msg=document.getElementById("message");
- const {data:admin,error}=await db
- .from("admin_users")
- .select("user_id")
- .eq("user_id",user.id)
- .maybeSingle();
+function msg(text){
+ document.getElementById("message").textContent=text;
+}
 
- if(error || !admin){
+async function verifyAdmin(user){
+ const {data,error}=await db.from("admin_users")
+ .select("user_id").eq("user_id",user.id).maybeSingle();
+
+ if(error||!data){
   await db.auth.signOut();
-  document.getElementById("dashboard").style.display="none";
-  document.getElementById("login").style.display="block";
-  msg.textContent="Admin access denied. आपका अकाउंट Admin सूची में नहीं है।";
-  return;
+  msg("Admin access denied.");
+  return false;
  }
-
  document.getElementById("login").style.display="none";
  document.getElementById("dashboard").style.display="block";
+ await loadStudents();
+ return true;
 }
 
 async function login(){
- const msg=document.getElementById("message");
  const email=document.getElementById("email").value.trim();
  const password=document.getElementById("password").value;
+ if(!email||!password){msg("Email और Password भरें।");return;}
 
- if(!email || !password){
-  msg.textContent="Email और Password दोनों भरें।";
-  return;
- }
-
- msg.textContent="Login हो रहा है...";
+ msg("Checking login...");
  const {data,error}=await db.auth.signInWithPassword({email,password});
-
- if(error){
-  msg.textContent="Login Error: "+error.message;
-  return;
- }
- await showDashboard(data.user);
+ if(error){msg(error.message);return;}
+ await verifyAdmin(data.user);
 }
 
 async function logout(){
  await db.auth.signOut();
- document.getElementById("dashboard").style.display="none";
- document.getElementById("login").style.display="block";
- document.getElementById("password").value="";
- document.getElementById("message").textContent="आप Logout हो गए हैं।";
+ location.reload();
 }
 
-db.auth.getSession().then(({data})=>{
- if(data.session){
-  showDashboard(data.session.user);
+async function loadStudents(){
+ document.getElementById("studentList").textContent="Loading...";
+ const {data,error}=await db.from("admissions")
+ .select("*").order("created_at",{ascending:false});
+
+ if(error){
+  document.getElementById("studentList").textContent="Error: "+error.message;
+  return;
  }
+ students=data||[];
+ document.getElementById("totalStudents").textContent=students.length;
+ document.getElementById("activeStudents").textContent=
+ students.filter(s=>s.status==="active").length;
+ renderStudents();
+}
+
+function renderStudents(){
+ const q=document.getElementById("search").value.toLowerCase();
+ const list=document.getElementById("studentList");
+ const filtered=students.filter(s=>
+ (s.student_name||"").toLowerCase().includes(q)||
+ (s.mobile||"").includes(q)
+ );
+
+ if(!filtered.length){
+  list.innerHTML="<p>No students found.</p>";
+  return;
+ }
+
+ list.innerHTML="";
+ filtered.forEach(s=>{
+  const div=document.createElement("div");
+  div.className="student";
+
+  const details=document.createElement("div");
+  const fields=[
+   ["Name",s.student_name],
+   ["Father",s.father_name],
+   ["Mobile",s.mobile],
+   ["Address",s.address||"-"],
+   ["Seats",Array.isArray(s.seat_ids)?s.seat_ids.join(", "):"-"],
+   ["Monthly Fee","₹"+s.monthly_fee],
+   ["Admission Date",s.admission_date||"-"],
+   ["Status",s.status]
+  ];
+
+  fields.forEach(([label,value])=>{
+   const p=document.createElement("p");
+   const b=document.createElement("b");
+   b.textContent=label+": ";
+   p.append(b,document.createTextNode(String(value??"-")));
+   details.appendChild(p);
+  });
+
+  const actions=document.createElement("div");
+  actions.className="actions";
+  const edit=document.createElement("button");
+  edit.textContent="EDIT";
+  edit.onclick=()=>editStudent(s.id);
+  const del=document.createElement("button");
+  del.textContent="DELETE";
+  del.className="danger";
+  del.onclick=()=>deleteStudent(s.id);
+  actions.append(edit,del);
+  div.append(details,actions);
+  list.appendChild(div);
+ });
+}
+
+function resetForm(){
+ editingId=null;
+ ["studentName","fatherName","mobile","address","seatIds","monthlyFee","admissionDate"].forEach(id=>{
+  document.getElementById(id).value="";
+ });
+ document.getElementById("status").value="active";
+ document.getElementById("formTitle").textContent="Add New Student";
+ document.getElementById("saveButton").textContent="ADD STUDENT";
+ document.getElementById("formMessage").textContent="";
+}
+
+async function saveStudent(){
+ const name=document.getElementById("studentName").value.trim();
+ const father=document.getElementById("fatherName").value.trim();
+ const mobile=document.getElementById("mobile").value.trim();
+ const address=document.getElementById("address").value.trim();
+ const rawSeats=document.getElementById("seatIds").value.trim();
+ const fee=Number(document.getElementById("monthlyFee").value);
+ const date=document.getElementById("admissionDate").value||null;
+ const status=document.getElementById("status").value;
+
+ if(!name||!father||!mobile||!document.getElementById("monthlyFee").value){
+  document.getElementById("formMessage").textContent="Name, Father Name, Mobile और Fee जरूरी हैं।";
+  return;
+ }
+
+ const seats=rawSeats?rawSeats.split(",").map(x=>Number(x.trim())):[];
+ if(seats.some(n=>!Number.isInteger(n)||n<1||n>50)||new Set(seats).size!==seats.length){
+  document.getElementById("formMessage").textContent="Seat numbers 1 से 50 तक लिखें, जैसे 1,2";
+  return;
+ }
+
+ if(fee<0||!Number.isFinite(fee)){
+  document.getElementById("formMessage").textContent="सही Monthly Fee लिखें।";
+  return;
+ }
+
+ if(!seats.length){
+  document.getElementById("formMessage").textContent="कम से कम एक Seat Number लिखें।";
+  return;
+ }
+
+ const payload={
+  student_name:name,
+  father_name:father,
+  mobile,
+  address:address||null,
+  seat_count:seats.length,
+  seat_ids:seats,
+  monthly_fee:fee,
+  admission_date:date,
+  status
+ };
+
+ document.getElementById("saveButton").disabled=true;
+ document.getElementById("formMessage").textContent="Saving...";
+
+ let result;
+ if(editingId){
+  result=await db.from("admissions").update(payload).eq("id",editingId);
+ }else{
+  result=await db.from("admissions").insert(payload);
+ }
+
+ document.getElementById("saveButton").disabled=false;
+ if(result.error){
+  document.getElementById("formMessage").textContent="Error: "+result.error.message;
+  return;
+ }
+
+ document.getElementById("formMessage").textContent="Student saved successfully!";
+ resetForm();
+ await loadStudents();
+}
+
+function editStudent(id){
+ const s=students.find(x=>x.id===id);
+ if(!s)return;
+ editingId=id;
+ document.getElementById("studentName").value=s.student_name||"";
+ document.getElementById("fatherName").value=s.father_name||"";
+ document.getElementById("mobile").value=s.mobile||"";
+ document.getElementById("address").value=s.address||"";
+ document.getElementById("seatIds").value=Array.isArray(s.seat_ids)?s.seat_ids.join(","):"";
+ document.getElementById("monthlyFee").value=s.monthly_fee??"";
+ document.getElementById("admissionDate").value=s.admission_date||"";
+ document.getElementById("status").value=s.status||"pending";
+ document.getElementById("formTitle").textContent="Edit Student";
+ document.getElementById("saveButton").textContent="UPDATE STUDENT";
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+
+async function deleteStudent(id){
+ if(!confirm("क्या आप इस Student को Delete करना चाहते हैं?"))return;
+ const {error}=await db.from("admissions").delete().eq("id",id);
+ if(error){alert("Delete Error: "+error.message);return;}
+ alert("Student deleted.");
+ await loadStudents();
+}
+
+db.auth.getSession().then(async ({data,error})=>{
+ if(error){msg(error.message);return;}
+ if(data.session)await verifyAdmin(data.session.user);
 });
 </script>
 </body>
