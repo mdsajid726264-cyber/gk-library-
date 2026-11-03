@@ -2,93 +2,74 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GK LIBRARY | Your Success Starts Here</title>
-  <meta name="description" content="GK LIBRARY, Kaurihar Road, Raxaul, Bihar. Book your library seat online.">
-  <style>
-    *{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    body{font-family:Arial,"Noto Sans Devanagari",sans-serif;background:#f5f7fb;color:#172033;line-height:1.6}
-    a{text-decoration:none;color:inherit}
-    header{background:#101d3a;color:white;padding:16px 5%;display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap}
-    .logo{font-size:23px;font-weight:800;letter-spacing:1px}
-    .logo span{display:block;font-size:10px;color:#f4c95d;letter-spacing:2px}
-    nav{display:flex;gap:17px;flex-wrap:wrap}
-    nav a{font-size:14px;color:#fff}
-    nav a:hover{color:#f4c95d}
-    .hero{background:linear-gradient(130deg,#101d3a,#174b72);color:white;text-align:center;padding:85px 20px}
-    .hero h1{font-size:clamp(30px,6vw,52px);margin-bottom:12px}
-    .hero p{font-size:18px;color:#e0e9f5}
-    .hero .tag{color:#f4c95d;font-weight:bold;letter-spacing:3px;margin-bottom:12px}
-    .actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:25px}
-    .btn{display:inline-block;border:0;border-radius:9px;padding:12px 20px;font-size:15px;font-weight:bold;cursor:pointer;background:#e9ad28;color:#172033}
-    .btn:hover{filter:brightness(.95)}
-    .btn-dark{background:#101d3a;color:white}
-    .btn-green{background:#16834c;color:white}
-    section{padding:58px 5%}
-    .section-title{text-align:center;font-size:30px;color:#142344;margin-bottom:10px}
-    .section-sub{text-align:center;color:#68758b;margin-bottom:30px}
-    .about-box{max-width:850px;margin:auto;background:white;padding:28px;border-radius:16px;box-shadow:0 5px 25px #15264a12;text-align:center}
-    .about-box p{margin:8px 0}
-    .plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;max-width:1000px;margin:auto}
-    .plan{background:white;padding:25px;border-radius:15px;text-align:center;border:1px solid #e5eaf2;box-shadow:0 5px 20px #15264a0c}
-    .plan h3{color:#17365d}
-    .price{font-size:35px;font-weight:800;color:#d28c0b;margin:10px}
-    .plan p{color:#68758b}
-    .timings{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;max-width:850px;margin:auto}
-    .time-card{background:#fff;border-radius:13px;padding:22px;text-align:center;box-shadow:0 4px 15px #15264a0c}
-    .time-card h3{color:#174b72}
-    .info{max-width:850px;margin:auto;text-align:center;background:#fff;padding:28px;border-radius:15px}
-    .booking-wrap{max-width:850px;margin:auto;background:white;padding:25px;border-radius:17px;box-shadow:0 6px 25px #15264a12}
-    .field{margin-bottom:17px}
-    label{display:block;font-weight:bold;margin-bottom:7px;color:#263650}
-    input,select{width:100%;padding:13px;border:1px solid #ccd5e2;border-radius:8px;font-size:16px;background:white;color:#172033}
-    input:focus,select:focus{outline:2px solid #9bc6ed;border-color:#2877b8}
-    .slot-options{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
-    .slot-option{border:1px solid #d8e0eb;padding:13px;border-radius:9px;display:flex;gap:9px;align-items:center;cursor:pointer;background:#fafcff}
-    .slot-option input{width:18px;height:18px}
-    .hint{font-size:13px;color:#68758b;margin-top:6px}
-    .seat-legend{display:flex;gap:15px;flex-wrap:wrap;margin:18px 0;justify-content:center}
-    .legend-item{display:flex;align-items:center;gap:6px;font-size:13px}
-    .legend-box{width:16px;height:16px;border-radius:4px;display:inline-block}
-    .seat-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin:20px 0}
-    .seat{min-height:48px;border:0;border-radius:8px;font-weight:bold;font-size:15px;cursor:pointer;background:#28a66a;color:white}
-    .seat.available:hover{outline:3px solid #b9e7ce}
-    .seat.selected{background:#2478d4;color:white;outline:3px solid #a9d2ff}
-    .seat.booked{background:#d95757;color:white;cursor:not-allowed;opacity:.8}
-    .seat:disabled{cursor:not-allowed}
-    .status{padding:12px;border-radius:8px;background:#f0f4fa;color:#34445d;margin:14px 0;font-size:14px}
-    .status.error{background:#fff0f0;color:#a32626}
-    .status.success{background:#e9f8ef;color:#176b3c}
-    .booking-note{background:#fff8e8;border-left:4px solid #e9ad28;padding:14px;border-radius:7px;margin:20px 0;font-size:14px}
-    .full-btn{width:100%;margin-top:10px}
-    .contact-box{max-width:750px;margin:auto;text-align:center;background:#101d3a;color:white;padding:30px;border-radius:15px}
-    .contact-box p{margin:8px 0}
-    footer{background:#0b1428;color:#dce4f0;text-align:center;padding:25px 15px;font-size:14px}
-    @media(max-width:600px){
-      header{justify-content:center;text-align:center}
-      nav{justify-content:center;gap:12px}
-      nav a{font-size:13px}
-      .hero{padding:65px 15px}
-      section{padding:43px 5%}
-      .booking-wrap{padding:17px}
-      .seat-grid{gap:7px}
-      .seat{min-height:43px;font-size:14px}
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GK LIBRARY - Raxaul</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f7fb;color:#17233b;line-height:1.6}
+header{background:#102344;color:white;padding:18px 5%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.logo{font-size:23px;font-weight:bold}
+.logo small{display:block;color:#f5c34d;font-size:10px;letter-spacing:2px}
+nav{display:flex;gap:14px;flex-wrap:wrap}
+nav a{color:white;text-decoration:none;font-size:14px}
+.hero{text-align:center;background:linear-gradient(130deg,#102344,#17618b);color:white;padding:75px 15px}
+.hero h1{font-size:clamp(30px,6vw,48px);margin:10px 0}
+.hero p{font-size:17px}
+.tag{color:#f5c34d;letter-spacing:3px;font-weight:bold}
+.btn{display:inline-block;border:0;border-radius:9px;padding:13px 20px;background:#edb42d;color:#17233b;font-size:15px;font-weight:bold;text-decoration:none;cursor:pointer}
+.btn-dark{background:#102344;color:white}
+.btn-green{background:#16834c;color:white}
+.actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:22px}
+section{padding:55px 5%}
+h2.heading{text-align:center;color:#102344;font-size:29px;margin:0 0 8px}
+.sub{text-align:center;color:#68758b;margin:0 0 28px}
+.panel{max-width:850px;margin:auto;background:white;padding:25px;border-radius:15px;box-shadow:0 5px 22px #10234412}
+.plans,.times{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;max-width:950px;margin:auto}
+.plan,.time{background:white;padding:23px;text-align:center;border-radius:13px;box-shadow:0 4px 16px #10234412}
+.plan h3,.time h3{color:#174b72}
+.price{font-size:34px;color:#d18b0b;font-weight:bold}
+.field{margin:0 0 17px}
+label.field-label{display:block;font-weight:bold;margin-bottom:6px}
+input[type=text],input[type=tel],input[type=date],select{width:100%;padding:13px;border:1px solid #cbd5e1;border-radius:8px;font-size:16px;background:white}
+.slot-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}
+.slot-choice{display:flex;align-items:center;gap:10px;padding:13px;border:1px solid #d6deea;border-radius:9px;background:#f9fbff;cursor:pointer}
+.slot-choice input{width:20px;height:20px;accent-color:#176fc1}
+.hint{font-size:13px;color:#66758c}
+.status{padding:13px;border-radius:8px;background:#edf2f8;margin:14px 0;overflow-wrap:anywhere;font-size:14px}
+.status.good{background:#e5f7eb;color:#176b3c}
+.status.bad{background:#fff0f0;color:#a32626}
+.legend{display:flex;justify-content:center;gap:15px;flex-wrap:wrap;margin:17px 0}
+.legend span{display:flex;align-items:center;gap:6px;font-size:13px}
+.dot{width:16px;height:16px;border-radius:4px;display:inline-block}
+.seats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px;margin:18px 0}
+.seat-option{position:relative}
+.seat-option input{position:absolute;opacity:0;width:1px;height:1px}
+.seat-option label{display:flex;align-items:center;justify-content:center;min-height:48px;border-radius:8px;background:#27a365;color:white;font-weight:bold;cursor:pointer;border:2px solid transparent}
+.seat-option input:checked+label{background:#2478d4;border-color:#0d3d78;outline:2px solid #9bcaff}
+.seat-option input:disabled+label{background:#d95757;color:white;cursor:not-allowed;opacity:.8}
+.seat-option label:active{transform:scale(.96)}
+.full{width:100%;margin-top:8px}
+.note{background:#fff6df;padding:14px;border-left:4px solid #eab12c;border-radius:7px;font-size:14px;margin:18px 0}
+.contact{max-width:750px;margin:auto;text-align:center;background:#102344;color:white;padding:28px;border-radius:14px}
+footer{text-align:center;background:#09162c;color:#e1e9f4;padding:25px}
+@media(max-width:600px){
+ header{justify-content:center;text-align:center}
+ nav{justify-content:center}
+ section{padding:42px 5%}
+ .panel{padding:17px}
+ .seats{gap:7px}
+ .seat-option label{min-height:44px}
+}
+</style>
 </head>
 <body>
 
 <header>
-  <div class="logo">GK LIBRARY <span>YOUR SUCCESS STARTS HERE</span></div>
+  <div class="logo">GK LIBRARY<small>YOUR SUCCESS STARTS HERE</small></div>
   <nav>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#fees">Fees</a>
-    <a href="#timing">Timing</a>
-    <a href="#booking">Booking</a>
-    <a href="#contact">Contact</a>
+    <a href="#home">Home</a><a href="#about">About</a><a href="#fees">Fees</a>
+    <a href="#timing">Timing</a><a href="#booking">Booking</a><a href="#contact">Contact</a>
   </nav>
 </header>
 
@@ -99,56 +80,44 @@
   <p>आपकी सफलता की शुरुआत यहीं से होती है।</p>
   <div class="actions">
     <a class="btn" href="#booking">Book Your Seat</a>
-    <a class="btn btn-green" href="https://wa.me/919155414805" target="_blank">WhatsApp Us</a>
+    <a class="btn btn-green" href="https://wa.me/919155414805">WhatsApp Us</a>
   </div>
 </div>
 
 <section id="about">
-  <h2 class="section-title">About GK LIBRARY</h2>
-  <p class="section-sub">आपकी पढ़ाई, हमारी प्राथमिकता</p>
-  <div class="about-box">
+  <h2 class="heading">About GK LIBRARY</h2>
+  <p class="sub">आपकी पढ़ाई, हमारी प्राथमिकता</p>
+  <div class="panel" style="text-align:center">
     <h3>GK LIBRARY में आपका स्वागत है।</h3>
     <p>पता: Kaurihar Road, Raxaul, Bihar</p>
-    <p><b>कुल क्षमता: 50 सीटें</b></p>
+    <b>कुल क्षमता: 50 सीटें</b>
     <p>अपनी पढ़ाई के लिए उपलब्ध समय के अनुसार मेंबरशिप चुनें।</p>
   </div>
 </section>
 
-<section id="fees" style="background:#edf2f8">
-  <h2 class="section-title">Monthly Membership Plans</h2>
-  <p class="section-sub">अपनी सुविधा के अनुसार प्लान चुनें</p>
+<section id="fees" style="background:#eaf0f7">
+  <h2 class="heading">Monthly Membership Plans</h2>
+  <p class="sub">अपनी सुविधा के अनुसार प्लान चुनें</p>
   <div class="plans">
-    <div class="plan">
-      <h3>1 Slot Plan</h3>
-      <div class="price">₹400</div>
-      <p>5 घंटे रोज</p><p>30 दिन की मेंबरशिप</p>
-    </div>
-    <div class="plan">
-      <h3>2 Slots Plan</h3>
-      <div class="price">₹700</div>
-      <p>10 घंटे रोज</p><p>30 दिन की मेंबरशिप</p>
-    </div>
-    <div class="plan">
-      <h3>3 Slots Plan</h3>
-      <div class="price">₹800</div>
-      <p>15 घंटे रोज</p><p>30 दिन की मेंबरशिप</p>
-    </div>
+    <div class="plan"><h3>1 Slot Plan</h3><div class="price">₹400</div><p>5 घंटे रोज</p><p>30 दिन की मेंबरशिप</p></div>
+    <div class="plan"><h3>2 Slots Plan</h3><div class="price">₹700</div><p>10 घंटे रोज</p><p>30 दिन की मेंबरशिप</p></div>
+    <div class="plan"><h3>3 Slots Plan</h3><div class="price">₹800</div><p>15 घंटे रोज</p><p>30 दिन की मेंबरशिप</p></div>
   </div>
 </section>
 
 <section id="timing">
-  <h2 class="section-title">Library Timing</h2>
-  <p class="section-sub">तीन सुविधाजनक स्लॉट</p>
-  <div class="timings">
-    <div class="time-card"><h3>Morning</h3><p>7:00 AM – 12:00 PM</p></div>
-    <div class="time-card"><h3>Afternoon</h3><p>12:00 PM – 5:00 PM</p></div>
-    <div class="time-card"><h3>Evening</h3><p>5:00 PM – 10:00 PM</p></div>
+  <h2 class="heading">Library Timing</h2>
+  <p class="sub">तीन सुविधाजनक स्लॉट</p>
+  <div class="times">
+    <div class="time"><h3>Morning</h3><p>7:00 AM – 12:00 PM</p></div>
+    <div class="time"><h3>Afternoon</h3><p>12:00 PM – 5:00 PM</p></div>
+    <div class="time"><h3>Evening</h3><p>5:00 PM – 10:00 PM</p></div>
   </div>
 </section>
 
-<section style="background:#edf2f8">
-  <h2 class="section-title">Library Information</h2>
-  <div class="info">
+<section style="background:#eaf0f7">
+  <h2 class="heading">Library Information</h2>
+  <div class="panel" style="text-align:center">
     <h3>GK LIBRARY</h3>
     <p>कुल क्षमता: 50 सीटें</p>
     <p>मेंबरशिप और उपलब्ध सुविधाओं की जानकारी के लिए हमसे संपर्क करें।</p>
@@ -157,29 +126,29 @@
 </section>
 
 <section id="booking">
-  <h2 class="section-title">Online Seat Booking</h2>
-  <p class="section-sub">अपनी सीट और समय चुनें</p>
+  <h2 class="heading">Online Seat Booking</h2>
+  <p class="sub">अपनी सीट और समय चुनें</p>
 
-  <div class="booking-wrap">
+  <div class="panel">
     <form id="bookingForm">
       <div class="field">
-        <label for="studentName">Student Name</label>
+        <label class="field-label" for="studentName">Student Name</label>
         <input id="studentName" type="text" placeholder="अपना पूरा नाम लिखें" required>
       </div>
 
       <div class="field">
-        <label for="mobile">Mobile Number</label>
+        <label class="field-label" for="mobile">Mobile Number</label>
         <input id="mobile" type="tel" inputmode="numeric" maxlength="10" placeholder="10 अंकों का मोबाइल नंबर" required>
       </div>
 
       <div class="field">
-        <label for="startDate">Booking Start Date</label>
+        <label class="field-label" for="startDate">Booking Start Date</label>
         <input id="startDate" type="date" required>
       </div>
 
       <div class="field">
-        <label for="plan">Membership Plan</label>
-        <select id="plan" required>
+        <label class="field-label" for="plan">Membership Plan</label>
+        <select id="plan">
           <option value="1">1 Slot – ₹400 (5 hours)</option>
           <option value="2" selected>2 Slots – ₹700 (10 hours)</option>
           <option value="3">3 Slots – ₹800 (15 hours)</option>
@@ -187,53 +156,53 @@
       </div>
 
       <div class="field">
-        <label>Choose Your Time Slots</label>
-        <div class="slot-options">
-          <label class="slot-option"><input type="checkbox" name="slot" value="Morning"> Morning – 7 AM to 12 PM</label>
-          <label class="slot-option"><input type="checkbox" name="slot" value="Afternoon"> Afternoon – 12 PM to 5 PM</label>
-          <label class="slot-option"><input type="checkbox" name="slot" value="Evening"> Evening – 5 PM to 10 PM</label>
+        <label class="field-label">Choose Your Time Slots</label>
+        <div class="slot-list">
+          <label class="slot-choice"><input type="checkbox" name="slot" value="Morning"> Morning – 7 AM to 12 PM</label>
+          <label class="slot-choice"><input type="checkbox" name="slot" value="Afternoon"> Afternoon – 12 PM to 5 PM</label>
+          <label class="slot-choice"><input type="checkbox" name="slot" value="Evening"> Evening – 5 PM to 10 PM</label>
         </div>
-        <p class="hint" id="slotHint">2 Slots प्लान के लिए ठीक 2 स्लॉट चुनें।</p>
+        <p id="slotHint" class="hint">अपने प्लान के अनुसार स्लॉट चुनें।</p>
       </div>
 
-      <div class="field">
-        <button class="btn btn-dark full-btn" type="button" id="checkBtn">Check Available Seats</button>
-      </div>
+      <button class="btn btn-dark full" type="button" id="checkBtn">Check Available Seats</button>
 
-      <div class="field">
-        <label>Available Seats</label>
-        <div class="seat-legend">
-          <span class="legend-item"><span class="legend-box" style="background:#28a66a"></span> खाली सीट</span>
-          <span class="legend-item"><span class="legend-box" style="background:#2478d4"></span> चुनी हुई सीट</span>
-          <span class="legend-item"><span class="legend-box" style="background:#d95757"></span> बुक सीट</span>
+      <div class="field" style="margin-top:22px">
+        <label class="field-label">Available Seats</label>
+        <div class="legend">
+          <span><i class="dot" style="background:#27a365"></i> खाली सीट</span>
+          <span><i class="dot" style="background:#2478d4"></i> चुनी हुई सीट</span>
+          <span><i class="dot" style="background:#d95757"></i> बुक सीट</span>
         </div>
-        <div id="seatGrid" class="seat-grid"></div>
-        <div id="seatStatus" class="status">पहले सही स्लॉट चुनें और Check Available Seats दबाएँ।</div>
+        <div id="seatGrid" class="seats">
+          <p class="hint">पहले स्लॉट चुनें और सीट उपलब्धता जाँचें।</p>
+        </div>
+        <div id="seatStatus" class="status">पहले अपने स्लॉट चुनें।</div>
         <p id="selectedSeatText" class="hint">अभी कोई सीट नहीं चुनी गई है।</p>
       </div>
 
-      <div class="booking-note">
+      <div class="note">
         <b>जरूरी जानकारी:</b><br>
-        खाली सीट चुनकर Booking Confirm करें। सफल बुकिंग के बाद सीट और चुने हुए स्लॉट 30 दिनों के लिए आरक्षित होंगे। भुगतान की स्थिति अलग से लाइब्रेरी द्वारा अपडेट की जाएगी।
+        उपलब्ध सीट चुनकर Booking Confirm करें। सफल बुकिंग के बाद सीट और चुने हुए स्लॉट 30 दिनों के लिए आरक्षित होंगे। भुगतान की स्थिति लाइब्रेरी द्वारा अलग से अपडेट की जाएगी।
       </div>
 
-      <button class="btn full-btn" type="submit" id="confirmBtn">Confirm Seat Booking</button>
+      <button class="btn full" type="submit" id="confirmBtn">Confirm Seat Booking</button>
       <div id="bookingStatus" class="status" style="display:none"></div>
     </form>
   </div>
 </section>
 
-<section id="contact" style="background:#edf2f8">
-  <h2 class="section-title">Contact Us</h2>
-  <div class="contact-box">
+<section id="contact" style="background:#eaf0f7">
+  <h2 class="heading">Contact Us</h2>
+  <div class="contact">
     <h2>GK LIBRARY, Raxaul</h2>
     <p>Phone: 091554 14805</p>
     <p>Address: Kaurihar Road, Raxaul, Bihar</p>
     <div class="actions">
       <a class="btn" href="tel:09155414805">Call Now</a>
-      <a class="btn btn-green" href="https://wa.me/919155414805" target="_blank">WhatsApp</a>
+      <a class="btn btn-green" href="https://wa.me/919155414805">WhatsApp</a>
     </div>
-    <p style="margin-top:20px"><a href="https://www.google.com/maps/search/?api=1&query=GK+LIBRARY+Kaurihar+Road+Raxaul+Bihar" target="_blank">Find Us on Google Maps</a></p>
+    <p><a href="https://www.google.com/maps/search/?api=1&query=GK+LIBRARY+Kaurihar+Road+Raxaul+Bihar" target="_blank" style="color:white">Find Us on Google Maps</a></p>
   </div>
 </section>
 
@@ -242,281 +211,215 @@
   <p>YOUR SUCCESS STARTS HERE</p>
   <p>Kaurihar Road, Raxaul, Bihar</p>
   <p>Contact: 091554 14805</p>
-  <p style="margin-top:12px">© 2026 GK LIBRARY. All Rights Reserved.</p>
+  <p>© 2026 GK LIBRARY. All Rights Reserved.</p>
 </footer>
 
 <script>
-  // Supabase public publishable key. Never put a secret/service-role key here.
-  const SUPABASE_URL = "https://eszyrevduobnpjfcknmr.supabase.co";
-  const SUPABASE_KEY = "sb_publishable_agE4Zq90RzufPjgKbUrX0w_XgBVYRAN";
+const SUPABASE_URL = "https://eszyrevduobnpjfcknmr.supabase.co";
+const SUPABASE_KEY = "sb_publishable_agE4Zq90RzufPjgKbUrX0w_XgBVYRAN";
 
-  const $ = (id) => document.getElementById(id);
-  const slotNames = ["Morning", "Afternoon", "Evening"];
-  let availableSeats = [];
-  let selectedSeat = null;
-  let availabilityChecked = false;
-  let submitting = false;
+const el = id => document.getElementById(id);
+let availableSeats = [];
+let selectedSeat = null;
+let availabilityChecked = false;
+let requestNumber = 0;
+let submitting = false;
 
-  function localToday() {
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = String(now.getMonth() + 1).padStart(2, "0");
-    const day = String(now.getDate()).padStart(2, "0");
-    return `${year}-${month}-${day}`;
+function todayLocal(){
+  const d = new Date();
+  return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+}
+el("startDate").min = todayLocal();
+el("startDate").value = todayLocal();
+
+function slotsSelected(){
+  return [...document.querySelectorAll('input[name="slot"]:checked')].map(x=>x.value);
+}
+function requiredSlots(){
+  return Number(el("plan").value);
+}
+function setSeatStatus(msg,type=""){
+  el("seatStatus").textContent=msg;
+  el("seatStatus").className="status "+type;
+}
+function setBookingStatus(msg,type=""){
+  el("bookingStatus").style.display="block";
+  el("bookingStatus").textContent=msg;
+  el("bookingStatus").className="status "+type;
+}
+function updateHint(){
+  const n=slotsSelected().length;
+  const required=requiredSlots();
+  el("slotHint").textContent=`आपने ${n} स्लॉट चुने हैं। इस प्लान के लिए ठीक ${required} स्लॉट चुनें।`;
+}
+function resetSeats(message){
+  requestNumber++;
+  availabilityChecked=false;
+  availableSeats=[];
+  selectedSeat=null;
+  el("seatGrid").innerHTML='<p class="hint">उपलब्धता जाँचने के बाद सीटें यहाँ दिखाई देंगी।</p>';
+  el("selectedSeatText").textContent="अभी कोई सीट नहीं चुनी गई है।";
+  setSeatStatus(message);
+}
+function renderSeats(){
+  const grid=el("seatGrid");
+  grid.innerHTML="";
+  for(let n=1;n<=50;n++){
+    const wrap=document.createElement("div");
+    wrap.className="seat-option";
+    const radio=document.createElement("input");
+    radio.type="radio";
+    radio.name="chosenSeat";
+    radio.id="seat"+n;
+    radio.value=String(n);
+    radio.disabled=!availabilityChecked || !availableSeats.includes(n);
+    const label=document.createElement("label");
+    label.htmlFor="seat"+n;
+    label.textContent=String(n);
+    radio.addEventListener("change",()=>{
+      selectedSeat=n;
+      el("selectedSeatText").textContent=`आपने सीट नंबर ${n} चुनी है।`;
+    });
+    wrap.appendChild(radio);
+    wrap.appendChild(label);
+    grid.appendChild(wrap);
+  }
+}
+async function rpc(name,data){
+  const response=await fetch(`${SUPABASE_URL}/rest/v1/rpc/${name}`,{
+    method:"POST",
+    headers:{
+      "Content-Type":"application/json",
+      "apikey":SUPABASE_KEY,
+      "Authorization":"Bearer "+SUPABASE_KEY
+    },
+    body:JSON.stringify(data)
+  });
+  const raw=await response.text();
+  let result;
+  try{result=raw?JSON.parse(raw):null;}catch{result=raw;}
+  if(!response.ok){
+    throw new Error(result && result.message ? result.message : (typeof result==="string"?result:`Server error ${response.status}`));
+  }
+  return result;
+}
+async function checkSeats(){
+  const slots=slotsSelected();
+  const required=requiredSlots();
+  const date=el("startDate").value;
+  resetSeats("सीटों की उपलब्धता जाँची जा रही है...");
+  const thisRequest=requestNumber;
+
+  if(slots.length!==required){
+    setSeatStatus(`कृपया ठीक ${required} स्लॉट चुनें।`,"bad");
+    return;
+  }
+  if(!date || date<todayLocal()){
+    setSeatStatus("आज या भविष्य की तारीख चुनें।","bad");
+    return;
   }
 
-  $("startDate").min = localToday();
-  $("startDate").value = localToday();
-
-  function chosenSlots() {
-    return Array.from(document.querySelectorAll('input[name="slot"]:checked'))
-      .map(input => input.value);
-  }
-
-  function expectedSlots() {
-    return Number($("plan").value);
-  }
-
-  function showStatus(message, type = "") {
-    const box = $("seatStatus");
-    box.textContent = message;
-    box.className = "status" + (type ? " " + type : "");
-  }
-
-  function showBookingStatus(message, type = "") {
-    const box = $("bookingStatus");
-    box.style.display = "block";
-    box.textContent = message;
-    box.className = "status" + (type ? " " + type : "");
-  }
-
-  function clearAvailability(message = "जानकारी बदल गई है। फिर से Check Available Seats दबाएँ।") {
-    availabilityChecked = false;
-    availableSeats = [];
-    selectedSeat = null;
+  el("checkBtn").disabled=true;
+  el("checkBtn").textContent="Checking...";
+  try{
+    const result=await rpc("get_available_library_seats",{
+      p_selected_slots:slots,
+      p_start_date:date
+    });
+    if(thisRequest!==requestNumber)return;
+    if(!Array.isArray(result))throw new Error("डेटाबेस से सीटों की सूची नहीं मिली।");
+    availableSeats=result.map(Number).filter(n=>Number.isInteger(n)&&n>=1&&n<=50);
+    availabilityChecked=true;
     renderSeats();
-    showStatus(message);
-    $("selectedSeatText").textContent = "अभी कोई सीट नहीं चुनी गई है।";
-  }
-
-  function updateSlotHint() {
-    const count = chosenSlots().length;
-    const required = expectedSlots();
-    $("slotHint").textContent = `आपने ${count} स्लॉट चुने हैं। इस प्लान के लिए ठीक ${required} स्लॉट चुनें।`;
-  }
-
-  function renderSeats() {
-    const grid = $("seatGrid");
-    grid.innerHTML = "";
-
-    for (let seat = 1; seat <= 50; seat++) {
-      const button = document.createElement("button");
-      button.type = "button";
-      button.textContent = seat;
-      button.className = "seat";
-
-      if (!availabilityChecked) {
-        button.disabled = true;
-        button.classList.add("booked");
-        button.title = "पहले सीट उपलब्धता जाँचें";
-      } else if (availableSeats.includes(seat)) {
-        button.classList.add("available");
-        if (selectedSeat === seat) button.classList.add("selected");
-        button.setAttribute("aria-label", `सीट ${seat} चुनें`);
-        button.addEventListener("click", () => {
-          selectedSeat = seat;
-          renderSeats();
-          $("selectedSeatText").textContent = `आपने सीट नंबर ${seat} चुनी है।`;
-        });
-      } else {
-        button.disabled = true;
-        button.classList.add("booked");
-        button.title = "इस तारीख और स्लॉट में सीट उपलब्ध नहीं है";
-      }
-
-      grid.appendChild(button);
+    if(availableSeats.length===0){
+      setSeatStatus("इस तारीख और स्लॉट में कोई खाली सीट नहीं है।","bad");
+    }else{
+      setSeatStatus(`${availableSeats.length} सीटें उपलब्ध हैं। हरी सीट पर टैप करके चुनें।`,"good");
+    }
+  }catch(err){
+    if(thisRequest!==requestNumber)return;
+    setSeatStatus("सीट जाँचने में समस्या: "+err.message,"bad");
+  }finally{
+    if(thisRequest===requestNumber){
+      el("checkBtn").disabled=false;
+      el("checkBtn").textContent="Check Available Seats";
     }
   }
+}
 
-  async function supabaseRpc(functionName, body) {
-    const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/${functionName}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "apikey": SUPABASE_KEY,
-        "Authorization": `Bearer ${SUPABASE_KEY}`
-      },
-      body: JSON.stringify(body)
-    });
+el("checkBtn").addEventListener("click",checkSeats);
 
-    const raw = await response.text();
-    let result;
-    try {
-      result = raw ? JSON.parse(raw) : null;
-    } catch {
-      result = raw;
+el("plan").addEventListener("change",()=>{
+  document.querySelectorAll('input[name="slot"]').forEach(x=>x.checked=false);
+  updateHint();
+  resetSeats("प्लान बदल गया है। अब नए स्लॉट चुनें।");
+});
+
+document.querySelectorAll('input[name="slot"]').forEach(input=>{
+  input.addEventListener("change",()=>{
+    const slots=slotsSelected();
+    if(slots.length>requiredSlots()){
+      input.checked=false;
+      setSeatStatus(`इस प्लान में केवल ${requiredSlots()} स्लॉट चुन सकते हैं।`,"bad");
     }
-
-    if (!response.ok) {
-      const message = result && result.message ? result.message : raw;
-      throw new Error(message || `Request failed (${response.status})`);
-    }
-    return result;
-  }
-
-  async function checkSeats() {
-    const slots = chosenSlots();
-    const required = expectedSlots();
-    const date = $("startDate").value;
-
-    selectedSeat = null;
-    availabilityChecked = false;
-    availableSeats = [];
-    renderSeats();
-    $("selectedSeatText").textContent = "अभी कोई सीट नहीं चुनी गई है।";
-
-    if (slots.length !== required) {
-      showStatus(`कृपया अपने प्लान के अनुसार ठीक ${required} स्लॉट चुनें।`, "error");
-      return;
-    }
-    if (!date || date < localToday()) {
-      showStatus("कृपया आज या भविष्य की सही तारीख चुनें।", "error");
-      return;
-    }
-
-    const button = $("checkBtn");
-    button.disabled = true;
-    button.textContent = "Checking...";
-    showStatus("सीटों की उपलब्धता जाँची जा रही है...");
-
-    try {
-      const result = await supabaseRpc("get_available_library_seats", {
-        p_selected_slots: slots,
-        p_start_date: date
-      });
-
-      if (!Array.isArray(result)) {
-        throw new Error("सीटों की जानकारी सही रूप में नहीं मिली।");
-      }
-
-      availableSeats = result.map(Number).filter(n => Number.isInteger(n) && n >= 1 && n <= 50);
-      availabilityChecked = true;
-      renderSeats();
-
-      if (availableSeats.length === 0) {
-        showStatus("माफ कीजिए, इस तारीख और स्लॉट के लिए कोई खाली सीट उपलब्ध नहीं है।", "error");
-      } else {
-        showStatus(`${availableSeats.length} सीटें उपलब्ध हैं। नीचे हरी सीट पर टैप करके अपनी सीट चुनें।`, "success");
-      }
-    } catch (error) {
-      showStatus("सीट जाँचने में समस्या: " + error.message, "error");
-    } finally {
-      button.disabled = false;
-      button.textContent = "Check Available Seats";
-    }
-  }
-
-  $("plan").addEventListener("change", () => {
-    const required = expectedSlots();
-    document.querySelectorAll('input[name="slot"]').forEach(input => {
-      input.checked = false;
-      input.disabled = false;
-    });
-    updateSlotHint();
-    clearAvailability(`अब ${required} स्लॉट चुनें और फिर सीट उपलब्धता जाँचें।`);
-  });
-
-  document.querySelectorAll('input[name="slot"]').forEach(input => {
-    input.addEventListener("change", () => {
-      const selected = chosenSlots();
-      const required = expectedSlots();
-
-      if (selected.length > required) {
-        input.checked = false;
-        showStatus(`इस प्लान में केवल ${required} स्लॉट चुन सकते हैं।`, "error");
-      } else {
-        clearAvailability();
-      }
-      updateSlotHint();
-    });
-  });
-
-  $("startDate").addEventListener("change", () => clearAvailability());
-  $("checkBtn").addEventListener("click", checkSeats);
-
-  $("bookingForm").addEventListener("submit", async (event) => {
-    event.preventDefault();
-    if (submitting) return;
-
-    const name = $("studentName").value.trim();
-    const mobile = $("mobile").value.trim();
-    const date = $("startDate").value;
-    const slots = chosenSlots();
-    const required = expectedSlots();
-
-    if (name.length < 2) {
-      showBookingStatus("कृपया अपना सही नाम लिखें।", "error");
-      return;
-    }
-    if (!/^[6-9]\d{9}$/.test(mobile)) {
-      showBookingStatus("कृपया सही 10 अंकों का भारतीय मोबाइल नंबर लिखें।", "error");
-      return;
-    }
-    if (!date || date < localToday()) {
-      showBookingStatus("कृपया आज या भविष्य की तारीख चुनें।", "error");
-      return;
-    }
-    if (slots.length !== required) {
-      showBookingStatus(`कृपया ठीक ${required} स्लॉट चुनें।`, "error");
-      return;
-    }
-    if (!availabilityChecked) {
-      showBookingStatus("पहले Check Available Seats दबाकर खाली सीटें देखें।", "error");
-      return;
-    }
-    if (!selectedSeat || !availableSeats.includes(selectedSeat)) {
-      showBookingStatus("कृपया नीचे दी गई हरी खाली सीटों में से एक सीट चुनें।", "error");
-      return;
-    }
-
-    const button = $("confirmBtn");
-    submitting = true;
-    button.disabled = true;
-    button.textContent = "Booking हो रही है...";
-
-    try {
-      const result = await supabaseRpc("create_public_library_booking", {
-        p_student_name: name,
-        p_mobile: mobile,
-        p_seat_number: selectedSeat,
-        p_selected_slots: slots,
-        p_start_date: date
-      });
-
-      const bookingId = Array.isArray(result) ? result[0] : result;
-      showBookingStatus(
-        `बुकिंग सफल! आपका Booking ID: ${bookingId}। सीट ${selectedSeat} अगले 30 दिनों के लिए चुने हुए स्लॉट में आरक्षित है। भुगतान की स्थिति अभी Pending है।`,
-        "success"
-      );
-
-      $("bookingForm").reset();
-      $("startDate").value = localToday();
-      $("plan").value = "2";
-      updateSlotHint();
-      clearAvailability("बुकिंग हो गई। नई बुकिंग के लिए फिर से जानकारी भरें।");
-    } catch (error) {
-      showBookingStatus("बुकिंग नहीं हो सकी: " + error.message + "। कृपया फिर से सीट उपलब्धता जाँचें।", "error");
-      clearAvailability("बुकिंग में समस्या आई। फिर से सीट उपलब्धता जाँचें।");
-    } finally {
-      submitting = false;
-      button.disabled = false;
-      button.textContent = "Confirm Seat Booking";
+    updateHint();
+    resetSeats("स्लॉट बदल गए हैं। सीटें फिर से जाँची जा रही हैं...");
+    if(slotsSelected().length===requiredSlots()){
+      checkSeats();
     }
   });
+});
 
-  updateSlotHint();
-  renderSeats();
+el("startDate").addEventListener("change",()=>{
+  resetSeats("तारीख बदल गई है। सीटें फिर से जाँचें।");
+  if(slotsSelected().length===requiredSlots())checkSeats();
+});
+
+el("bookingForm").addEventListener("submit",async event=>{
+  event.preventDefault();
+  if(submitting)return;
+
+  const name=el("studentName").value.trim();
+  const mobile=el("mobile").value.trim();
+  const date=el("startDate").value;
+  const slots=slotsSelected();
+
+  if(name.length<2){setBookingStatus("अपना सही नाम लिखें।","bad");return;}
+  if(!/^[6-9][0-9]{9}$/.test(mobile)){setBookingStatus("सही 10 अंकों का भारतीय मोबाइल नंबर लिखें।","bad");return;}
+  if(!date||date<todayLocal()){setBookingStatus("सही बुकिंग तारीख चुनें।","bad");return;}
+  if(slots.length!==requiredSlots()){setBookingStatus(`ठीक ${requiredSlots()} स्लॉट चुनें।`,"bad");return;}
+  if(!availabilityChecked){setBookingStatus("पहले उपलब्ध सीटें जाँचें।","bad");return;}
+  if(!selectedSeat||!availableSeats.includes(selectedSeat)){setBookingStatus("पहले हरी खाली सीट चुनें।","bad");return;}
+
+  submitting=true;
+  el("confirmBtn").disabled=true;
+  el("confirmBtn").textContent="Booking हो रही है...";
+  try{
+    const result=await rpc("create_public_library_booking",{
+      p_student_name:name,
+      p_mobile:mobile,
+      p_seat_number:selectedSeat,
+      p_selected_slots:slots,
+      p_start_date:date
+    });
+    const id=Array.isArray(result)?result[0]:result;
+    setBookingStatus(`बुकिंग सफल! Booking ID: ${id}। सीट ${selectedSeat} अगले 30 दिनों के लिए चुने हुए स्लॉट में आरक्षित है। भुगतान Pending है।`,"good");
+    el("bookingForm").reset();
+    el("startDate").value=todayLocal();
+    el("plan").value="2";
+    updateHint();
+    resetSeats("बुकिंग हो गई। नई बुकिंग के लिए जानकारी भरें।");
+  }catch(err){
+    setBookingStatus("बुकिंग नहीं हो सकी: "+err.message,"bad");
+    resetSeats("बुकिंग में समस्या आई। सीटें फिर से जाँचें।");
+  }finally{
+    submitting=false;
+    el("confirmBtn").disabled=false;
+    el("confirmBtn").textContent="Confirm Seat Booking";
+  }
+});
+
+updateHint();
 </script>
-
 </body>
 </html>
