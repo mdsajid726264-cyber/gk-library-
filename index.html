@@ -1,11 +1,11 @@
-
 <!DOCTYPE html>
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GK LIBRARY | Raxaul</title>
-<meta name="description" content="GK LIBRARY, Kaurihar Road, Raxaul, Bihar. शांत पढ़ाई का वातावरण और मासिक मेंबरशिप।">
+<meta name="description" content="GK LIBRARY, Kaurihar Road, Raxaul, Bihar. Online seat booking and monthly membership.">
+
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -23,6 +23,7 @@ nav a:hover{color:#e49b20}
 .btn:hover{background:#ffd36e}
 .btn-green{background:#16864b;color:white}
 .btn-green:hover{background:#106b3b}
+button:disabled{opacity:.6;cursor:not-allowed}
 section{padding:45px 18px;max-width:1050px;margin:auto}
 .heading{text-align:center;color:#15375f;margin-bottom:25px;font-size:27px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:17px}
@@ -35,14 +36,21 @@ section{padding:45px 18px;max-width:1050px;margin:auto}
 .slots .card{font-weight:bold;color:#17477a}
 form{background:white;padding:23px;border-radius:14px;box-shadow:0 3px 15px #00000010;max-width:650px;margin:auto}
 form label{font-weight:bold;display:block;margin-top:13px}
-input,select{width:100%;padding:13px;margin:8px 0;border:1px solid #ccd5e0;border-radius:7px;font-size:16px}
+input,select{width:100%;padding:13px;margin:8px 0;border:1px solid #ccd5e0;border-radius:7px;font-size:16px;background:white}
 .slot-option{display:flex;align-items:center;gap:9px;margin:8px 0}
 .slot-option input{width:auto;margin:0}
-#message{margin-top:12px;font-weight:bold;color:#17477a}
+#message{margin-top:12px;font-weight:bold;color:#17477a;overflow-wrap:anywhere}
 .contact{background:#eaf1fa;border-radius:14px;padding:25px;text-align:center}
 footer{background:#102b50;color:white;text-align:center;padding:27px 15px;line-height:2}
 footer a{color:#ffd36e}
 .small{font-size:13px;color:#66758a}
+.seat-list{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin:15px 0}
+.seat{padding:12px 5px;border:1px solid #16864b;border-radius:8px;text-align:center;background:#e7f8ed;color:#126b3b;font-weight:bold;cursor:pointer}
+.seat.selected{background:#17477a;color:white;border-color:#17477a}
+.seat:disabled{background:#eee;color:#999;border-color:#ddd;cursor:not-allowed}
+.legend{display:flex;gap:15px;flex-wrap:wrap;font-size:13px;margin:10px 0}
+.legend span{display:flex;align-items:center;gap:5px}
+.dot{width:12px;height:12px;border-radius:3px;display:inline-block}
 @media(max-width:600px){
  header h1{font-size:27px}
  .hero{padding:55px 15px}
@@ -50,9 +58,12 @@ footer a{color:#ffd36e}
  .heading{font-size:23px}
  nav{gap:12px}
  nav a{font-size:14px}
+ .seat-list{grid-template-columns:repeat(5,1fr);gap:6px}
+ .seat{font-size:13px;padding:10px 2px}
 }
 </style>
 </head>
+
 <body>
 
 <header>
@@ -109,7 +120,6 @@ footer a{color:#ffd36e}
 <p>30 दिन की मेंबरशिप</p>
 </div>
 </div>
-<p class="small" style="text-align:center;margin-top:14px">सीट और स्लॉट की उपलब्धता की पुष्टि लाइब्रेरी द्वारा की जाएगी।</p>
 </section>
 
 <section id="timing">
@@ -141,13 +151,18 @@ footer a{color:#ffd36e}
 </section>
 
 <section id="booking">
-<h2 class="heading">Online Booking Enquiry</h2>
+<h2 class="heading">Online Seat Booking</h2>
+
 <form id="bookingForm">
+
 <label for="name">Student Name</label>
-<input id="name" type="text" placeholder="अपना पूरा नाम लिखें" required>
+<input id="name" type="text" maxlength="100" placeholder="अपना पूरा नाम लिखें" required>
 
 <label for="mobile">Mobile Number</label>
 <input id="mobile" type="tel" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" placeholder="10 अंकों का मोबाइल नंबर" required>
+
+<label for="startDate">Booking Start Date</label>
+<input id="startDate" type="date" required>
 
 <label for="package">Membership Plan</label>
 <select id="package" required>
@@ -157,26 +172,53 @@ footer a{color:#ffd36e}
 </select>
 
 <label>Choose Your Time Slots</label>
+
 <div class="slot-option">
 <input type="checkbox" name="slot" value="Morning">
 <span>Morning – 7 AM to 12 PM</span>
 </div>
+
 <div class="slot-option">
 <input type="checkbox" name="slot" value="Afternoon">
 <span>Afternoon – 12 PM to 5 PM</span>
 </div>
+
 <div class="slot-option">
 <input type="checkbox" name="slot" value="Evening">
 <span>Evening – 5 PM to 10 PM</span>
 </div>
 
 <div class="notice">
-<b>जरूरी जानकारी:</b><br>
-आपके चुने हुए प्लान के अनुसार स्लॉट चुनें। यह केवल बुकिंग की पूछताछ है। सीट की उपलब्धता और फीस की पुष्टि लाइब्रेरी करेगी। भुगतान की पुष्टि होने से पहले आपकी सीट बुक नहीं मानी जाएगी।
+<b>प्लान के अनुसार स्लॉट चुनें।</b><br>
+1 Slot = ₹400 | 2 Slots = ₹700 | 3 Slots = ₹800<br>
+मेंबरशिप 30 दिनों की होगी।
 </div>
 
-<button class="btn btn-green" type="submit">Send Booking Enquiry on WhatsApp</button>
+<button class="btn" type="button" id="checkSeats">Check Available Seats</button>
+
+<label>Available Seats</label>
+
+<div class="legend">
+<span><i class="dot" style="background:#e7f8ed;border:1px solid #16864b"></i> खाली सीट</span>
+<span><i class="dot" style="background:#17477a"></i> चुनी हुई सीट</span>
+<span><i class="dot" style="background:#eee"></i> बुक सीट</span>
+</div>
+
+<div id="seatList" class="seat-list">
+<p class="small" style="grid-column:1/-1">तारीख और स्लॉट चुनकर खाली सीटें देखें।</p>
+</div>
+
+<p id="selectedSeatText" class="small">अभी कोई सीट नहीं चुनी गई है।</p>
+
+<div class="notice">
+<b>जरूरी जानकारी:</b><br>
+खाली सीट चुनकर Booking Confirm करें। सफल बुकिंग के बाद सीट और चुने हुए स्लॉट 30 दिनों के लिए आरक्षित होंगे। भुगतान की स्थिति अलग से लाइब्रेरी द्वारा अपडेट की जाएगी।
+</div>
+
+<button class="btn btn-green" type="submit" id="bookButton">Confirm Seat Booking</button>
+
 <p id="message" role="status"></p>
+
 </form>
 </section>
 
@@ -202,39 +244,281 @@ footer a{color:#ffd36e}
 </footer>
 
 <script>
-document.getElementById("bookingForm").addEventListener("submit",function(event){
- event.preventDefault();
+const SUPABASE_URL = "https://eszyrevduobnpjfcknmr.supabase.co";
+const SUPABASE_KEY = "sb_publishable_agE4Zq90RzufPjgKbUrX0w_XgBVYRAN";
 
- const name=document.getElementById("name").value.trim();
- const mobile=document.getElementById("mobile").value.trim();
- const plan=document.getElementById("package");
- const amount=plan.value;
- const requiredSlots=Number(plan.options[plan.selectedIndex].dataset.slots);
- const selected=[...document.querySelectorAll('input[name="slot"]:checked')].map(item=>item.value);
- const message=document.getElementById("message");
+const form = document.getElementById("bookingForm");
+const nameInput = document.getElementById("name");
+const mobileInput = document.getElementById("mobile");
+const dateInput = document.getElementById("startDate");
+const packageInput = document.getElementById("package");
+const seatList = document.getElementById("seatList");
+const message = document.getElementById("message");
+const selectedSeatText = document.getElementById("selectedSeatText");
+const checkButton = document.getElementById("checkSeats");
+const bookButton = document.getElementById("bookButton");
 
- if(!/^[0-9]{10}$/.test(mobile)){
-  message.textContent="कृपया सही 10 अंकों का मोबाइल नंबर लिखें।";
-  return;
- }
+let selectedSeat = null;
+let availableSeats = [];
 
- if(selected.length!==requiredSlots){
-  message.textContent="आपने "+requiredSlots+" स्लॉट का प्लान चुना है। कृपया ठीक "+requiredSlots+" स्लॉट चुनें।";
-  return;
- }
+function localDateString() {
+  const now = new Date();
+  const local = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
+  return local.toISOString().slice(0, 10);
+}
 
- const text=
- "GK LIBRARY - Booking Enquiry\n"+
- "Student Name: "+name+"\n"+
- "Mobile: "+mobile+"\n"+
- "Membership Amount: Rs. "+amount+"\n"+
- "Selected Slots: "+selected.join(", ")+"\n"+
- "Address: Kaurihar Road, Raxaul, Bihar\n"+
- "Please confirm seat availability.";
+dateInput.min = localDateString();
+dateInput.value = localDateString();
 
- const whatsappURL="https://wa.me/919155414805?text="+encodeURIComponent(text);
- window.open(whatsappURL,"_blank");
- message.textContent="WhatsApp पर आपकी enquiry भेजने के लिए आगे बढ़ें।";
+function getSelectedSlots() {
+  return [...document.querySelectorAll('input[name="slot"]:checked')]
+    .map(item => item.value);
+}
+
+function getRequiredSlots() {
+  return Number(packageInput.options[packageInput.selectedIndex].dataset.slots);
+}
+
+function showMessage(text, success = false) {
+  message.textContent = text;
+  message.style.color = success ? "#16864b" : "#b42318";
+}
+
+async function supabaseRPC(functionName, parameters) {
+  const response = await fetch(
+    SUPABASE_URL + "/rest/v1/rpc/" + functionName,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "apikey": SUPABASE_KEY,
+        "Authorization": "Bearer " + SUPABASE_KEY
+      },
+      body: JSON.stringify(parameters)
+    }
+  );
+
+  const data = await response.json().catch(() => null);
+
+  if (!response.ok) {
+    throw new Error(
+      data?.message ||
+      data?.details ||
+      data?.hint ||
+      "Server error. Please try again."
+    );
+  }
+
+  return data;
+}
+
+function clearSelectedSeat() {
+  selectedSeat = null;
+  selectedSeatText.textContent = "अभी कोई सीट नहीं चुनी गई है।";
+}
+
+function renderSeats(seats) {
+  seatList.innerHTML = "";
+  availableSeats = seats;
+  clearSelectedSeat();
+
+  if (!seats.length) {
+    seatList.innerHTML =
+      '<p class="small" style="grid-column:1/-1">इस तारीख और चुने हुए स्लॉट में कोई खाली सीट नहीं है।</p>';
+    return;
+  }
+
+  for (let seat = 1; seat <= 50; seat++) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "seat";
+    button.textContent = seat;
+
+    if (!seats.includes(seat)) {
+      button.disabled = true;
+    } else {
+      button.addEventListener("click", () => {
+        selectedSeat = seat;
+
+        document.querySelectorAll(".seat").forEach(item => {
+          item.classList.remove("selected");
+        });
+
+        button.classList.add("selected");
+        selectedSeatText.textContent = "आपकी चुनी हुई सीट: " + seat;
+      });
+    }
+
+    seatList.appendChild(button);
+  }
+}
+
+async function loadAvailableSeats() {
+  const slots = getSelectedSlots();
+  const required = getRequiredSlots();
+
+  if (slots.length !== required) {
+    showMessage("कृपया अपने प्लान के अनुसार ठीक " + required + " स्लॉट चुनें।");
+    seatList.innerHTML =
+      '<p class="small" style="grid-column:1/-1">पहले सही स्लॉट चुनें।</p>';
+    clearSelectedSeat();
+    return;
+  }
+
+  if (!dateInput.value) {
+    showMessage("कृपया Booking Start Date चुनें।");
+    return;
+  }
+
+  if (dateInput.value < localDateString()) {
+    showMessage("पुरानी तारीख की बुकिंग नहीं हो सकती।");
+    return;
+  }
+
+  checkButton.disabled = true;
+  checkButton.textContent = "Checking...";
+  showMessage("खाली सीटें देखी जा रही हैं...", true);
+
+  try {
+    const seats = await supabaseRPC(
+      "get_available_library_seats",
+      {
+        p_selected_slots: slots,
+        p_start_date: dateInput.value
+      }
+    );
+
+    if (!Array.isArray(seats)) {
+      throw new Error("Seat availability का सही Result नहीं मिला।");
+    }
+
+    renderSeats(seats);
+    showMessage(
+      seats.length + " सीटें उपलब्ध हैं। अपनी सीट चुनें।",
+      true
+    );
+
+  } catch (error) {
+    seatList.innerHTML =
+      '<p class="small" style="grid-column:1/-1">सीटों की जानकारी नहीं मिल सकी। कृपया दोबारा कोशिश करें।</p>';
+    clearSelectedSeat();
+    showMessage("Error: " + error.message);
+
+  } finally {
+    checkButton.disabled = false;
+    checkButton.textContent = "Check Available Seats";
+  }
+}
+
+checkButton.addEventListener("click", loadAvailableSeats);
+
+packageInput.addEventListener("change", () => {
+  document.querySelectorAll('input[name="slot"]').forEach(item => {
+    item.checked = false;
+  });
+
+  seatList.innerHTML =
+    '<p class="small" style="grid-column:1/-1">स्लॉट चुनकर खाली सीटें देखें।</p>';
+
+  clearSelectedSeat();
+  showMessage("अब अपने प्लान के अनुसार स्लॉट चुनें।", true);
+});
+
+document.querySelectorAll('input[name="slot"]').forEach(item => {
+  item.addEventListener("change", () => {
+    seatList.innerHTML =
+      '<p class="small" style="grid-column:1/-1">अब Check Available Seats दबाएँ।</p>';
+    clearSelectedSeat();
+  });
+});
+
+dateInput.addEventListener("change", () => {
+  seatList.innerHTML =
+    '<p class="small" style="grid-column:1/-1">नई तारीख के लिए खाली सीटें दोबारा देखें।</p>';
+  clearSelectedSeat();
+});
+
+form.addEventListener("submit", async function(event) {
+  event.preventDefault();
+
+  const name = nameInput.value.trim();
+  const mobile = mobileInput.value.trim();
+  const slots = getSelectedSlots();
+  const required = getRequiredSlots();
+
+  if (!name) {
+    showMessage("कृपया अपना नाम लिखें।");
+    return;
+  }
+
+  if (!/^[0-9]{10}$/.test(mobile)) {
+    showMessage("कृपया सही 10 अंकों का मोबाइल नंबर लिखें।");
+    return;
+  }
+
+  if (!dateInput.value || dateInput.value < localDateString()) {
+    showMessage("कृपया सही Booking Date चुनें।");
+    return;
+  }
+
+  if (slots.length !== required) {
+    showMessage("आपके प्लान के अनुसार ठीक " + required + " स्लॉट चुनें।");
+    return;
+  }
+
+  if (!selectedSeat) {
+    showMessage("पहले खाली सीट देखकर अपनी सीट चुनें।");
+    return;
+  }
+
+  if (!availableSeats.includes(selectedSeat)) {
+    showMessage("यह सीट अब उपलब्ध नहीं है। दोबारा खाली सीटें देखें।");
+    clearSelectedSeat();
+    return;
+  }
+
+  bookButton.disabled = true;
+  bookButton.textContent = "Booking...";
+  showMessage("आपकी बुकिंग की जा रही है...", true);
+
+  try {
+    const bookingId = await supabaseRPC(
+      "create_public_library_booking",
+      {
+        p_student_name: name,
+        p_mobile: mobile,
+        p_seat_number: selectedSeat,
+        p_selected_slots: slots,
+        p_start_date: dateInput.value
+      }
+    );
+
+    showMessage(
+      "Booking सफल! आपका Booking ID: " + bookingId +
+      ". आपकी सीट 30 दिनों के लिए आरक्षित हुई है। भुगतान की पुष्टि लाइब्रेरी से करें।",
+      true
+    );
+
+    form.reset();
+    dateInput.min = localDateString();
+    dateInput.value = localDateString();
+    seatList.innerHTML =
+      '<p class="small" style="grid-column:1/-1">आपकी बुकिंग दर्ज हो गई है। नई बुकिंग के लिए स्लॉट चुनें।</p>';
+
+    availableSeats = [];
+    clearSelectedSeat();
+
+  } catch (error) {
+    showMessage(
+      "Booking नहीं हुई: " + error.message +
+      " खाली सीटें दोबारा Check करें।"
+    );
+    clearSelectedSeat();
+
+  } finally {
+    bookButton.disabled = false;
+    bookButton.textContent = "Confirm Seat Booking";
+  }
 });
 </script>
 
