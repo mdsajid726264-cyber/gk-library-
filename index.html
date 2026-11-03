@@ -5,31 +5,52 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GK LIBRARY | Raxaul</title>
+<meta name="description" content="GK LIBRARY, Kaurihar Road, Raxaul, Bihar. शांत पढ़ाई का वातावरण और मासिक मेंबरशिप।">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,sans-serif;background:#f5f7fc;color:#18243a}
-header{background:#102b50;color:white;padding:20px;text-align:center}
-header h1{font-size:30px;letter-spacing:2px}
-header p{margin-top:8px;color:#d6e4ff}
-nav{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;padding:14px;background:#fff}
+html{scroll-behavior:smooth}
+body{font-family:Arial,sans-serif;background:#f4f7fc;color:#192b43;line-height:1.6}
+header{background:#102b50;color:white;text-align:center;padding:25px 15px}
+header h1{font-size:32px;letter-spacing:2px}
+header p{color:#d5e5ff;margin-top:5px}
+nav{background:white;padding:14px 8px;display:flex;justify-content:center;gap:20px;flex-wrap:wrap;position:sticky;top:0;z-index:10;box-shadow:0 2px 10px #00000010}
 nav a{color:#17365e;text-decoration:none;font-weight:bold}
-.hero{background:linear-gradient(120deg,#102b50,#2464a2);color:white;text-align:center;padding:65px 18px}
-.hero h2{font-size:34px;margin-bottom:15px}
-.hero p{line-height:1.7}
-.btn{display:inline-block;background:#f5bd48;color:#142b49;padding:13px 22px;border:0;border-radius:8px;font-weight:bold;text-decoration:none;margin:15px 5px;cursor:pointer}
-section{padding:35px 18px;max-width:950px;margin:auto}
-h2.heading{text-align:center;color:#15375f;margin-bottom:24px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px}
-.card{background:white;padding:22px;border-radius:13px;box-shadow:0 3px 15px #00000010;text-align:center}
+nav a:hover{color:#e49b20}
+.hero{background:linear-gradient(130deg,#102b50,#2871b8);color:white;text-align:center;padding:75px 18px}
+.hero h2{font-size:34px;margin-bottom:12px}
+.hero p{max-width:650px;margin:auto;line-height:1.8}
+.btn{display:inline-block;background:#f5bd48;color:#142b49;padding:13px 22px;border:0;border-radius:8px;font-weight:bold;text-decoration:none;margin:15px 5px;cursor:pointer;font-size:15px}
+.btn:hover{background:#ffd36e}
+.btn-green{background:#16864b;color:white}
+.btn-green:hover{background:#106b3b}
+section{padding:45px 18px;max-width:1050px;margin:auto}
+.heading{text-align:center;color:#15375f;margin-bottom:25px;font-size:27px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:17px}
+.card{background:white;padding:23px;border-radius:14px;box-shadow:0 3px 15px #0000000d;text-align:center}
 .card h3{color:#17477a;margin-bottom:10px}
-.price{font-size:27px;color:#16864b;font-weight:bold;margin:12px}
-.slots{line-height:2}
-form{background:white;padding:22px;border-radius:14px;box-shadow:0 3px 15px #00000010}
-input,select{width:100%;padding:13px;margin:9px 0;border:1px solid #ccd5e0;border-radius:7px;font-size:16px}
-label{font-weight:bold;display:block;margin-top:10px}
-.notice{background:#fff3d6;padding:14px;border-radius:8px;margin:15px 0;line-height:1.6}
-footer{background:#102b50;color:white;text-align:center;padding:25px;line-height:2}
+.price{font-size:30px;color:#16864b;font-weight:bold;margin:10px}
+.card p{margin:5px 0}
+.highlight{border:2px solid #e9b341}
+.notice{background:#fff3d6;padding:15px;border-radius:9px;margin:15px 0;line-height:1.7}
+.slots .card{font-weight:bold;color:#17477a}
+form{background:white;padding:23px;border-radius:14px;box-shadow:0 3px 15px #00000010;max-width:650px;margin:auto}
+form label{font-weight:bold;display:block;margin-top:13px}
+input,select{width:100%;padding:13px;margin:8px 0;border:1px solid #ccd5e0;border-radius:7px;font-size:16px}
+.slot-option{display:flex;align-items:center;gap:9px;margin:8px 0}
+.slot-option input{width:auto;margin:0}
+#message{margin-top:12px;font-weight:bold;color:#17477a}
+.contact{background:#eaf1fa;border-radius:14px;padding:25px;text-align:center}
+footer{background:#102b50;color:white;text-align:center;padding:27px 15px;line-height:2}
 footer a{color:#ffd36e}
+.small{font-size:13px;color:#66758a}
+@media(max-width:600px){
+ header h1{font-size:27px}
+ .hero{padding:55px 15px}
+ .hero h2{font-size:27px}
+ .heading{font-size:23px}
+ nav{gap:12px}
+ nav a{font-size:14px}
+}
 </style>
 </head>
 <body>
@@ -45,115 +66,177 @@ footer a{color:#ffd36e}
 <a href="#plans">Fees</a>
 <a href="#timing">Timing</a>
 <a href="#booking">Booking</a>
+<a href="#contact">Contact</a>
 </nav>
 
 <div class="hero" id="home">
 <h2>Welcome to GK LIBRARY</h2>
-<p>शांत वातावरण में पढ़ें, मेहनत करें और अपने सपनों को पूरा करें।</p>
+<p>शांत वातावरण में पढ़ें, मेहनत करें और अपने सपनों को पूरा करें। आपकी सफलता की शुरुआत यहीं से होती है।</p>
 <a class="btn" href="#booking">Book Your Seat</a>
+<a class="btn btn-green" href="https://wa.me/919155414805">WhatsApp Us</a>
 </div>
 
 <section id="about">
 <h2 class="heading">About GK LIBRARY</h2>
 <div class="card">
 <h3>आपकी पढ़ाई, हमारी प्राथमिकता</h3>
-<p>GK LIBRARY, Kaurihar Road, Raxaul, Bihar.</p>
-<p>कुल क्षमता: 50 सीटें</p>
+<p>GK LIBRARY में आपका स्वागत है।</p>
+<p><b>पता:</b> Kaurihar Road, Raxaul, Bihar</p>
+<p><b>कुल क्षमता:</b> 50 सीटें</p>
+<p>अपनी पढ़ाई के लिए उपलब्ध समय के अनुसार मेंबरशिप चुनें।</p>
 </div>
 </section>
 
 <section id="plans">
-<h2 class="heading">Monthly Membership</h2>
+<h2 class="heading">Monthly Membership Plans</h2>
 <div class="grid">
 <div class="card">
-<h3>1 Seat</h3><div class="price">₹400</div>
+<h3>1 Slot Plan</h3>
+<div class="price">₹400</div>
 <p>5 घंटे रोज</p>
+<p>30 दिन की मेंबरशिप</p>
 </div>
-<div class="card">
-<h3>2 Seats</h3><div class="price">₹700</div>
+<div class="card highlight">
+<h3>2 Slots Plan</h3>
+<div class="price">₹700</div>
 <p>10 घंटे रोज</p>
+<p>30 दिन की मेंबरशिप</p>
 </div>
 <div class="card">
-<h3>3 Seats</h3><div class="price">₹800</div>
+<h3>3 Slots Plan</h3>
+<div class="price">₹800</div>
 <p>15 घंटे रोज</p>
+<p>30 दिन की मेंबरशिप</p>
 </div>
 </div>
+<p class="small" style="text-align:center;margin-top:14px">सीट और स्लॉट की उपलब्धता की पुष्टि लाइब्रेरी द्वारा की जाएगी।</p>
 </section>
 
 <section id="timing">
 <h2 class="heading">Library Timing</h2>
 <div class="grid slots">
-<div class="card">🌅 Morning<br>7 AM – 12 PM</div>
-<div class="card">☀️ Afternoon<br>12 PM – 5 PM</div>
-<div class="card">🌙 Evening<br>5 PM – 10 PM</div>
+<div class="card">
+<h3>Morning</h3>
+<p>7:00 AM – 12:00 PM</p>
+</div>
+<div class="card">
+<h3>Afternoon</h3>
+<p>12:00 PM – 5:00 PM</p>
+</div>
+<div class="card">
+<h3>Evening</h3>
+<p>5:00 PM – 10:00 PM</p>
+</div>
+</div>
+</section>
+
+<section id="facilities">
+<h2 class="heading">Library Information</h2>
+<div class="card">
+<h3>GK LIBRARY</h3>
+<p>कुल क्षमता: 50 सीटें</p>
+<p>मेंबरशिप और उपलब्ध सुविधाओं की जानकारी के लिए हमसे संपर्क करें।</p>
+<p class="small">लाइब्रेरी की वास्तविक फोटो और सुविधाओं की पुष्टि होने पर यहाँ जोड़ी जाएँगी।</p>
 </div>
 </section>
 
 <section id="booking">
-<h2 class="heading">Online Seat Booking</h2>
+<h2 class="heading">Online Booking Enquiry</h2>
 <form id="bookingForm">
-<label>Student Name</label>
-<input id="name" required placeholder="अपना नाम लिखें">
+<label for="name">Student Name</label>
+<input id="name" type="text" placeholder="अपना पूरा नाम लिखें" required>
 
-<label>Mobile Number</label>
-<input id="mobile" required type="tel" pattern="[0-9]{10}" placeholder="10 अंकों का मोबाइल नंबर">
+<label for="mobile">Mobile Number</label>
+<input id="mobile" type="tel" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" placeholder="10 अंकों का मोबाइल नंबर" required>
 
-<label>Package</label>
+<label for="package">Membership Plan</label>
 <select id="package" required>
-<option value="400">1 Seat - ₹400 (5 hours)</option>
-<option value="700">2 Seats - ₹700 (10 hours)</option>
-<option value="800">3 Seats - ₹800 (15 hours)</option>
+<option value="400" data-slots="1">1 Slot – ₹400 (5 hours)</option>
+<option value="700" data-slots="2">2 Slots – ₹700 (10 hours)</option>
+<option value="800" data-slots="3">3 Slots – ₹800 (15 hours)</option>
 </select>
 
-<label>Choose Time Slot</label>
-<div id="slotChoices">
-<label><input type="checkbox" name="slot" value="Morning"> Morning 7–12</label>
-<label><input type="checkbox" name="slot" value="Afternoon"> Afternoon 12–5</label>
-<label><input type="checkbox" name="slot" value="Evening"> Evening 5–10</label>
+<label>Choose Your Time Slots</label>
+<div class="slot-option">
+<input type="checkbox" name="slot" value="Morning">
+<span>Morning – 7 AM to 12 PM</span>
+</div>
+<div class="slot-option">
+<input type="checkbox" name="slot" value="Afternoon">
+<span>Afternoon – 12 PM to 5 PM</span>
+</div>
+<div class="slot-option">
+<input type="checkbox" name="slot" value="Evening">
+<span>Evening – 5 PM to 10 PM</span>
 </div>
 
 <div class="notice">
-पेमेंट के अगले दिन से पढ़ाई शुरू होगी। सीट की उपलब्धता और पेमेंट की पुष्टि के बाद ही बुकिंग पक्की होगी।
+<b>जरूरी जानकारी:</b><br>
+आपके चुने हुए प्लान के अनुसार स्लॉट चुनें। यह केवल बुकिंग की पूछताछ है। सीट की उपलब्धता और फीस की पुष्टि लाइब्रेरी करेगी। भुगतान की पुष्टि होने से पहले आपकी सीट बुक नहीं मानी जाएगी।
 </div>
-<button class="btn" type="submit">Submit Booking Request</button>
-<p id="message"></p>
+
+<button class="btn btn-green" type="submit">Send Booking Enquiry on WhatsApp</button>
+<p id="message" role="status"></p>
 </form>
 </section>
 
-<section>
+<section id="contact">
 <h2 class="heading">Contact Us</h2>
-<div class="card">
-<p>📞 091554 14805</p>
-<p>📍 Kaurihar Rd, Raxaul, Bihar</p>
-<a class="btn" href="https://wa.me/919155414805">WhatsApp Us</a>
+<div class="contact">
+<h3>GK LIBRARY, Raxaul</h3>
+<p><b>Phone:</b> 091554 14805</p>
+<p><b>Address:</b> Kaurihar Road, Raxaul, Bihar</p>
+<a class="btn" href="tel:09155414805">Call Now</a>
+<a class="btn btn-green" href="https://wa.me/919155414805">WhatsApp</a>
+<br>
+<a href="https://www.google.com/maps/search/?api=1&query=GK+LIBRARY+Kaurihar+Road+Raxaul+Bihar" target="_blank" rel="noopener">Find Us on Google Maps</a>
 </div>
 </section>
 
 <footer>
-<strong>GK LIBRARY</strong><br>
-Kaurihar Rd, Raxaul, Bihar<br>
-© 2026 GK LIBRARY
+<h3>GK LIBRARY</h3>
+<p>YOUR SUCCESS STARTS HERE</p>
+<p>Kaurihar Road, Raxaul, Bihar</p>
+<p>Contact: 091554 14805</p>
+<p>© 2026 GK LIBRARY. All Rights Reserved.</p>
 </footer>
 
 <script>
-const pkg=document.getElementById('package');
-const choices=document.querySelectorAll('input[name="slot"]');
-pkg.addEventListener('change',()=>{
- choices.forEach(x=>x.checked=false);
-});
-document.getElementById('bookingForm').addEventListener('submit',e=>{
- e.preventDefault();
- const count=Number(pkg.value)===400?1:Number(pkg.value)===700?2:3;
- const selected=[...choices].filter(x=>x.checked);
- if(selected.length!==count){
- document.getElementById('message').textContent=
- 'कृपया '+count+' अलग-अलग टाइम स्लॉट चुनें।';
- return;
+document.getElementById("bookingForm").addEventListener("submit",function(event){
+ event.preventDefault();
+
+ const name=document.getElementById("name").value.trim();
+ const mobile=document.getElementById("mobile").value.trim();
+ const plan=document.getElementById("package");
+ const amount=plan.value;
+ const requiredSlots=Number(plan.options[plan.selectedIndex].dataset.slots);
+ const selected=[...document.querySelectorAll('input[name="slot"]:checked')].map(item=>item.value);
+ const message=document.getElementById("message");
+
+ if(!/^[0-9]{10}$/.test(mobile)){
+  message.textContent="कृपया सही 10 अंकों का मोबाइल नंबर लिखें।";
+  return;
  }
- document.getElementById('message').textContent=
- 'आपकी Booking Request तैयार है। अभी पेमेंट या सीट कन्फर्म नहीं हुई है। लाइब्रेरी से संपर्क करें।';
+
+ if(selected.length!==requiredSlots){
+  message.textContent="आपने "+requiredSlots+" स्लॉट का प्लान चुना है। कृपया ठीक "+requiredSlots+" स्लॉट चुनें।";
+  return;
+ }
+
+ const text=
+ "GK LIBRARY - Booking Enquiry\n"+
+ "Student Name: "+name+"\n"+
+ "Mobile: "+mobile+"\n"+
+ "Membership Amount: Rs. "+amount+"\n"+
+ "Selected Slots: "+selected.join(", ")+"\n"+
+ "Address: Kaurihar Road, Raxaul, Bihar\n"+
+ "Please confirm seat availability.";
+
+ const whatsappURL="https://wa.me/919155414805?text="+encodeURIComponent(text);
+ window.open(whatsappURL,"_blank");
+ message.textContent="WhatsApp पर आपकी enquiry भेजने के लिए आगे बढ़ें।";
 });
 </script>
+
 </body>
 </html>
-
