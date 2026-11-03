@@ -1,1 +1,159 @@
 
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GK LIBRARY | Raxaul</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f5f7fc;color:#18243a}
+header{background:#102b50;color:white;padding:20px;text-align:center}
+header h1{font-size:30px;letter-spacing:2px}
+header p{margin-top:8px;color:#d6e4ff}
+nav{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;padding:14px;background:#fff}
+nav a{color:#17365e;text-decoration:none;font-weight:bold}
+.hero{background:linear-gradient(120deg,#102b50,#2464a2);color:white;text-align:center;padding:65px 18px}
+.hero h2{font-size:34px;margin-bottom:15px}
+.hero p{line-height:1.7}
+.btn{display:inline-block;background:#f5bd48;color:#142b49;padding:13px 22px;border:0;border-radius:8px;font-weight:bold;text-decoration:none;margin:15px 5px;cursor:pointer}
+section{padding:35px 18px;max-width:950px;margin:auto}
+h2.heading{text-align:center;color:#15375f;margin-bottom:24px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px}
+.card{background:white;padding:22px;border-radius:13px;box-shadow:0 3px 15px #00000010;text-align:center}
+.card h3{color:#17477a;margin-bottom:10px}
+.price{font-size:27px;color:#16864b;font-weight:bold;margin:12px}
+.slots{line-height:2}
+form{background:white;padding:22px;border-radius:14px;box-shadow:0 3px 15px #00000010}
+input,select{width:100%;padding:13px;margin:9px 0;border:1px solid #ccd5e0;border-radius:7px;font-size:16px}
+label{font-weight:bold;display:block;margin-top:10px}
+.notice{background:#fff3d6;padding:14px;border-radius:8px;margin:15px 0;line-height:1.6}
+footer{background:#102b50;color:white;text-align:center;padding:25px;line-height:2}
+footer a{color:#ffd36e}
+</style>
+</head>
+<body>
+
+<header>
+<h1>GK LIBRARY</h1>
+<p>YOUR SUCCESS STARTS HERE</p>
+</header>
+
+<nav>
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#plans">Fees</a>
+<a href="#timing">Timing</a>
+<a href="#booking">Booking</a>
+</nav>
+
+<div class="hero" id="home">
+<h2>Welcome to GK LIBRARY</h2>
+<p>शांत वातावरण में पढ़ें, मेहनत करें और अपने सपनों को पूरा करें।</p>
+<a class="btn" href="#booking">Book Your Seat</a>
+</div>
+
+<section id="about">
+<h2 class="heading">About GK LIBRARY</h2>
+<div class="card">
+<h3>आपकी पढ़ाई, हमारी प्राथमिकता</h3>
+<p>GK LIBRARY, Kaurihar Road, Raxaul, Bihar.</p>
+<p>कुल क्षमता: 50 सीटें</p>
+</div>
+</section>
+
+<section id="plans">
+<h2 class="heading">Monthly Membership</h2>
+<div class="grid">
+<div class="card">
+<h3>1 Seat</h3><div class="price">₹400</div>
+<p>5 घंटे रोज</p>
+</div>
+<div class="card">
+<h3>2 Seats</h3><div class="price">₹700</div>
+<p>10 घंटे रोज</p>
+</div>
+<div class="card">
+<h3>3 Seats</h3><div class="price">₹800</div>
+<p>15 घंटे रोज</p>
+</div>
+</div>
+</section>
+
+<section id="timing">
+<h2 class="heading">Library Timing</h2>
+<div class="grid slots">
+<div class="card">🌅 Morning<br>7 AM – 12 PM</div>
+<div class="card">☀️ Afternoon<br>12 PM – 5 PM</div>
+<div class="card">🌙 Evening<br>5 PM – 10 PM</div>
+</div>
+</section>
+
+<section id="booking">
+<h2 class="heading">Online Seat Booking</h2>
+<form id="bookingForm">
+<label>Student Name</label>
+<input id="name" required placeholder="अपना नाम लिखें">
+
+<label>Mobile Number</label>
+<input id="mobile" required type="tel" pattern="[0-9]{10}" placeholder="10 अंकों का मोबाइल नंबर">
+
+<label>Package</label>
+<select id="package" required>
+<option value="400">1 Seat - ₹400 (5 hours)</option>
+<option value="700">2 Seats - ₹700 (10 hours)</option>
+<option value="800">3 Seats - ₹800 (15 hours)</option>
+</select>
+
+<label>Choose Time Slot</label>
+<div id="slotChoices">
+<label><input type="checkbox" name="slot" value="Morning"> Morning 7–12</label>
+<label><input type="checkbox" name="slot" value="Afternoon"> Afternoon 12–5</label>
+<label><input type="checkbox" name="slot" value="Evening"> Evening 5–10</label>
+</div>
+
+<div class="notice">
+पेमेंट के अगले दिन से पढ़ाई शुरू होगी। सीट की उपलब्धता और पेमेंट की पुष्टि के बाद ही बुकिंग पक्की होगी।
+</div>
+<button class="btn" type="submit">Submit Booking Request</button>
+<p id="message"></p>
+</form>
+</section>
+
+<section>
+<h2 class="heading">Contact Us</h2>
+<div class="card">
+<p>📞 091554 14805</p>
+<p>📍 Kaurihar Rd, Raxaul, Bihar</p>
+<a class="btn" href="https://wa.me/919155414805">WhatsApp Us</a>
+</div>
+</section>
+
+<footer>
+<strong>GK LIBRARY</strong><br>
+Kaurihar Rd, Raxaul, Bihar<br>
+© 2026 GK LIBRARY
+</footer>
+
+<script>
+const pkg=document.getElementById('package');
+const choices=document.querySelectorAll('input[name="slot"]');
+pkg.addEventListener('change',()=>{
+ choices.forEach(x=>x.checked=false);
+});
+document.getElementById('bookingForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const count=Number(pkg.value)===400?1:Number(pkg.value)===700?2:3;
+ const selected=[...choices].filter(x=>x.checked);
+ if(selected.length!==count){
+ document.getElementById('message').textContent=
+ 'कृपया '+count+' अलग-अलग टाइम स्लॉट चुनें।';
+ return;
+ }
+ document.getElementById('message').textContent=
+ 'आपकी Booking Request तैयार है। अभी पेमेंट या सीट कन्फर्म नहीं हुई है। लाइब्रेरी से संपर्क करें।';
+});
+</script>
+</body>
+</html>
+
